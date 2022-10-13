@@ -5,7 +5,7 @@
 <div
 	id="menu"
 	class="fixed top-[5rem] w-full h-[calc(100vh-5rem)] 
-		bg-c-l-green transitionMenu
+		bg-c-l-green transitionMenu z-20
 		{showMenu ? 'showMenu' : 'defaultPositionXMenu'}"
 >
 	TODO

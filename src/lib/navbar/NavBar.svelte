@@ -16,7 +16,7 @@
 		PRED - 2022
 	</h1>
 	<button
-		class="w-[3rem] h-[3rem] ml-auto my-auto mr-[1rem] 
+		class="w-[2rem] h-[2rem] ml-auto my-auto mr-[1rem] 
 	 		rounded-full shrink-0
 			{showMenu ? 'bg-green-300' : 'bg-red-300'}"
 		on:click={() => {

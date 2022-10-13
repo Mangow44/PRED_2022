@@ -23,7 +23,7 @@
 				text-center
 				whitespace-nowrap overflow-hidden text-ellipsis 
 				bg-red-300 
-				{expanded ? 'w-[50%] h-full' : 'w-full h-full disabled cursor-pointer'}"
+				{expanded ? 'w-[50%] h-full' : 'w-full h-full disabled'}"
 			bind:value={title}
 		/>
 		<button
