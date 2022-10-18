@@ -1,12 +1,23 @@
 <script>
+	import { db } from '$lib/firebase/config';
+	import { doc, updateDoc } from 'firebase/firestore';
+
 	export let title = '';
 	export let content = '';
+	export let id = '';
 	export let color = 'green';
 
 	$: expanded = false;
+
+	function saveBlock() {
+		console.log('save');
+		updateDoc(doc(db, 'blocks', id), {
+			title: title,
+			content: content
+		});
+	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="m-auto flex flex-col 
 
@@ -31,6 +42,7 @@
 				rounded-full shrink-0
 				{expanded ? 'bg-c-green' : 'bg-blue-300'}"
 			on:click|self={() => {
+				if (expanded) saveBlock();
 				expanded = !expanded;
 			}}
 		/>
@@ -40,6 +52,6 @@
 		class="w-full h-full p-[0.5rem]
 			overflow-auto resize-none"
 		style="background-color: {color};"
-		>{content}
-	</textarea>
+		bind:value={content}
+	/>
 </div>
