@@ -30,7 +30,8 @@
 		<button
 			class="w-[2rem] h-[2rem] my-auto ml-[1rem]
 				shrink-0 rounded-full bg-violet-500"
-			on:click={() => {
+			on:click|self={() => {
+				expanded = false;
 				removeBlock();
 			}}
 		>
