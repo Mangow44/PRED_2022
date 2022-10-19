@@ -6,11 +6,11 @@
 	export let content = '';
 	export let id = '';
 	export let color = 'green';
+	export let removeBlock = () => {};
 
 	$: expanded = false;
 
 	function saveBlock() {
-		console.log('save');
 		updateDoc(doc(db, 'blocks', id), {
 			title: title,
 			content: content
@@ -27,6 +27,15 @@
 	style="background-color: {color};"
 >
 	<h2 class="flex w-full h-[3rem] bg-red-300 shrink-0">
+		<button
+			class="w-[2rem] h-[2rem] my-auto ml-[1rem]
+				shrink-0 rounded-full bg-violet-500"
+			on:click={() => {
+				removeBlock();
+			}}
+		>
+			-
+		</button>
 		<input
 			disabled={!expanded}
 			type="text"

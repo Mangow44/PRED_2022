@@ -3,8 +3,8 @@
 	import { goto } from '$app/navigation';
 	import { auth, db } from '$lib/firebase/config';
 	import { onAuthStateChanged } from 'firebase/auth';
+	import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 	import Block from '$lib/block/Block.svelte';
-	import { collection, getDocs } from 'firebase/firestore';
 	import AddBlock from '$lib/block/AddBlock.svelte';
 
 	let loading = true;
@@ -34,6 +34,12 @@
 		});
 	}
 
+	function removeBlock(block) {
+		blocks.splice(blocks.indexOf(block), 1);
+		blocks = [...blocks];
+		deleteDoc(doc(db, 'blocks', block.id));
+	}
+
 	getBlocks();
 </script>
 
@@ -46,7 +52,12 @@
 	>
 		<!-- TODO LOADER -->
 		{#each blocks as block}
-			<Block title={block.title} content={block.content} id={block.id} />
+			<Block
+				title={block.title}
+				content={block.content}
+				id={block.id}
+				removeBlock={() => removeBlock(block)}
+			/>
 		{/each}
 
 		<AddBlock bind:blocks />
