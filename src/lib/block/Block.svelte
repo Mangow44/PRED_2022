@@ -1,11 +1,12 @@
 <script>
 	import { db } from '$lib/firebase/config';
 	import { doc, updateDoc } from 'firebase/firestore';
+	import DeleteBlock from './DeleteBlock.svelte';
 
 	export let title = '';
 	export let content = '';
 	export let id = '';
-	export let color = 'green';
+	export let color = 'gray';
 	export let removeBlock = () => {};
 
 	$: expanded = false;
@@ -19,24 +20,14 @@
 </script>
 
 <div
-	class="m-auto flex flex-col 
-
+	class="m-auto flex flex-col
 		{expanded
 		? 'fixed w-full h-full top-[5rem] z-10'
 		: 'w-[14rem] h-[20rem] hover:scale-105 transition-transform'}"
 	style="background-color: {color};"
 >
-	<h2 class="flex w-full h-[3rem] bg-red-300 shrink-0">
-		<button
-			class="w-[2rem] h-[2rem] my-auto ml-[1rem]
-				shrink-0 rounded-full bg-violet-500"
-			on:click|self={() => {
-				expanded = false;
-				removeBlock();
-			}}
-		>
-			-
-		</button>
+	<h2 class="relative flex w-full h-[3rem] bg-red-300 shrink-0">
+		<DeleteBlock removeBlock={() => removeBlock()} bind:expanded />
 		<input
 			disabled={!expanded}
 			type="text"
