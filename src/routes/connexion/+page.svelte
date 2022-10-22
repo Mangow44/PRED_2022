@@ -32,7 +32,7 @@
 			name="userEmail"
 			id="email"
 			bind:value={email}
-			class="w-[50%] h-12 my-[1rem] m-auto border-2 pl-1"
+			class="w-[70%] h-12 my-[1rem] m-auto border-2 pl-1"
 		/>
 
 		<input
@@ -41,7 +41,7 @@
 			name="userPassword"
 			id="password"
 			bind:value={password}
-			class="w-[50%] h-12 m-auto my-[1rem] border-2 pl-1"
+			class="w-[70%] h-12 m-auto my-[1rem] border-2 pl-1"
 		/>
 
 		<p
@@ -53,7 +53,8 @@
 
 		<button
 			type="submit"
-			class="mx-auto font-bold mt-10 w-[40%] h-12 
+			class="w-[40%] h-12 mt-10 
+				mx-auto font-bold 
 				rounded-lg shrink-0
 				border-2"
 			on:click={(e) => {

@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { auth, db } from '$lib/firebase/config';
 	import { onAuthStateChanged } from 'firebase/auth';
-	import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+	import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 	import Block from '$lib/block/Block.svelte';
 	import AddBlock from '$lib/block/AddBlock.svelte';
 
@@ -21,6 +21,7 @@
 	});
 
 	function getBlocks() {
+		blocks = [];
 		getDocs(collection(db, 'blocks')).then((data) => {
 			data.docs.forEach((doc) => {
 				let block = doc.data();
@@ -40,6 +41,23 @@
 		deleteDoc(doc(db, 'blocks', block.id));
 	}
 
+	function swapBlocks(index1, index2) {
+		blocks[index1 - 1].index = index2;
+		blocks[index2 - 1].index = index1;
+
+		blocks.sort((a, b) => {
+			return a.index - b.index;
+		});
+
+		updateDoc(doc(db, 'blocks', blocks[index1 - 1].id), {
+			index: blocks[index1 - 1].index
+		}).then(() => {
+			updateDoc(doc(db, 'blocks', blocks[index2 - 1].id), {
+				index: blocks[index2 - 1].index
+			});
+		});
+	}
+
 	getBlocks();
 </script>
 
@@ -56,7 +74,9 @@
 				title={block.title}
 				content={block.content}
 				id={block.id}
+				index={block.index}
 				removeBlock={() => removeBlock(block)}
+				swapBlocks={(index1, index2) => swapBlocks(index1, index2)}
 			/>
 		{/each}
 

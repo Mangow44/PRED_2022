@@ -7,7 +7,9 @@
 	export let content = '';
 	export let id = '';
 	export let color = 'gray';
+	export let index = 0;
 	export let removeBlock = () => {};
+	export let swapBlocks = () => {};
 
 	$: expanded = false;
 
@@ -17,14 +19,32 @@
 			content: content
 		});
 	}
+
+	function drop(e) {
+		e.preventDefault();
+		const index2 = e.dataTransfer.getData('text/plain');
+		swapBlocks(index, index2);
+	}
+
+	function dragStart(e) {
+		e.dataTransfer.setData('text/plain', index);
+	}
 </script>
 
 <div
+	draggable="true"
 	class="m-auto flex flex-col
 		{expanded
 		? 'fixed w-full h-full top-[5rem] z-10'
 		: 'w-[14rem] h-[20rem] hover:scale-105 transition-transform'}"
 	style="background-color: {color};"
+	ondragover="return false"
+	on:drop={(e) => {
+		drop(e);
+	}}
+	on:dragstart={(e) => {
+		dragStart(e);
+	}}
 >
 	<h2 class="relative flex w-full h-[3rem] bg-red-300 shrink-0">
 		<DeleteBlock removeBlock={() => removeBlock()} bind:expanded />
