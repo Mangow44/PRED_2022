@@ -1,16 +1,5 @@
 <script>
-	import { db } from '$lib/firebase/config';
-	import { addDoc, collection } from 'firebase/firestore';
-
-	export let blocks = [];
-
-	function addBlock() {
-		let block = { title: '', content: '', index: blocks.length + 1 };
-		addDoc(collection(db, 'blocks'), block).then((doc) => {
-			block.id = doc.id;
-			blocks = [...blocks, block];
-		});
-	}
+	export let addBlock = () => {};
 </script>
 
 <button

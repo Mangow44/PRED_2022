@@ -3,7 +3,7 @@
 	import { goto } from '$app/navigation';
 	import { auth, db } from '$lib/firebase/config';
 	import { onAuthStateChanged } from 'firebase/auth';
-	import { collection, getDocs, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+	import { collection, getDocs, deleteDoc, doc, updateDoc, addDoc } from 'firebase/firestore';
 	import Block from '$lib/block/Block.svelte';
 	import AddBlock from '$lib/block/AddBlock.svelte';
 
@@ -21,7 +21,6 @@
 	});
 
 	function getBlocks() {
-		blocks = [];
 		getDocs(collection(db, 'blocks')).then((data) => {
 			data.docs.forEach((doc) => {
 				let block = doc.data();
@@ -35,7 +34,15 @@
 		});
 	}
 
-	function removeBlock(block) {
+	function addBlock() {
+		let block = { title: '', content: '', index: blocks.length + 1 };
+		addDoc(collection(db, 'blocks'), block).then((doc) => {
+			block.id = doc.id;
+			blocks = [...blocks, block];
+		});
+	}
+
+	function deleteBlock(block) {
 		blocks.splice(blocks.indexOf(block), 1);
 		blocks = [...blocks];
 		deleteDoc(doc(db, 'blocks', block.id));
@@ -71,15 +78,15 @@
 		<!-- TODO LOADER -->
 		{#each blocks as block}
 			<Block
+				id={block.id}
 				title={block.title}
 				content={block.content}
-				id={block.id}
 				index={block.index}
-				removeBlock={() => removeBlock(block)}
+				deleteBlock={() => deleteBlock(block)}
 				swapBlocks={(index1, index2) => swapBlocks(index1, index2)}
 			/>
 		{/each}
 
-		<AddBlock bind:blocks />
+		<AddBlock addBlock={() => addBlock()} />
 	</div>
 {/if}

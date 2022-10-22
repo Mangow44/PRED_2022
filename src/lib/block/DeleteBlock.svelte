@@ -1,6 +1,6 @@
 <script>
-	export let removeBlock = () => {};
 	export let expanded = false;
+	export let deleteBlock = () => {};
 
 	let showValidation = false;
 	let validationPosition = {};
@@ -37,7 +37,7 @@
 			on:click={() => {
 				showValidation = false;
 				expanded = false;
-				removeBlock();
+				deleteBlock();
 			}}
 		/>
 	</div>

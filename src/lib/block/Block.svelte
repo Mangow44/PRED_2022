@@ -2,16 +2,17 @@
 	import { db } from '$lib/firebase/config';
 	import { doc, updateDoc } from 'firebase/firestore';
 	import DeleteBlock from './DeleteBlock.svelte';
+	import ExpandBlock from './ExpandBlock.svelte';
 
+	export let id = '';
 	export let title = '';
 	export let content = '';
-	export let id = '';
-	export let color = 'gray';
 	export let index = 0;
-	export let removeBlock = () => {};
+	export let deleteBlock = () => {};
 	export let swapBlocks = () => {};
 
 	$: expanded = false;
+	let color = 'gray';
 
 	function saveBlock() {
 		updateDoc(doc(db, 'blocks', id), {
@@ -47,7 +48,7 @@
 	}}
 >
 	<h2 class="relative flex w-full h-[3rem] bg-red-300 shrink-0">
-		<DeleteBlock removeBlock={() => removeBlock()} bind:expanded />
+		<DeleteBlock bind:expanded deleteBlock={() => deleteBlock()} />
 		<input
 			disabled={!expanded}
 			type="text"
@@ -58,15 +59,7 @@
 				{expanded ? 'w-[50%] h-full' : 'w-full h-full disabled'}"
 			bind:value={title}
 		/>
-		<button
-			class="w-[2rem] h-[2rem] my-auto mr-[1rem] 
-				rounded-full shrink-0
-				{expanded ? 'bg-c-green' : 'bg-blue-300'}"
-			on:click|self={() => {
-				if (expanded) saveBlock();
-				expanded = !expanded;
-			}}
-		/>
+		<ExpandBlock bind:expanded saveBlock={() => saveBlock()} />
 	</h2>
 	<textarea
 		disabled={!expanded}
