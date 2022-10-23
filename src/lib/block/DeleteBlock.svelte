@@ -8,11 +8,11 @@
 
 <button
 	class="w-[2rem] h-[2rem] my-auto ml-[1rem]
-    shrink-0 rounded-full bg-violet-500"
+    shrink-0 rounded-full bg-red-300"
 	on:click|self={(e) => {
 		showValidation = true;
-		validationPosition.x = e.offsetX;
-		validationPosition.y = e.offsetY;
+		validationPosition.x = e.offsetX + 10;
+		validationPosition.y = e.offsetY + 5;
 	}}
 >
 	-
@@ -21,7 +21,7 @@
 {#if showValidation}
 	<div
 		style="top: {validationPosition.y}px; left: {validationPosition.x}px"
-		class="absolute flex w-[6rem] h-[3rem] bg-slate-300"
+		class="absolute flex w-[6rem] h-[3rem] rounded-full bg-slate-500"
 		on:mouseleave={() => {
 			showValidation = false;
 		}}
