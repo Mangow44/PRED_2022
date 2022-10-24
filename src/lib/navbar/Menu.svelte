@@ -1,6 +1,5 @@
 <script>
-	import { goto } from '$app/navigation';
-
+	import Content from './Content.svelte';
 	export let showMenu = false;
 </script>
 
@@ -10,17 +9,8 @@
 		bg-c-l-green transitionMenu z-20
 		{showMenu ? 'showMenu' : 'defaultPositionXMenu'}"
 >
-	<button
-		class="w-[90%] h-[4rem] mx-auto mt-[1rem]
-			text-2xl font-bold rounded-xl shadow-lg bg-white
-			transition-all hover:scale-105"
-		on:click={() => {
-			showMenu = false;
-			goto('/liens_externes');
-		}}
-	>
-		Liens externes
-	</button>
+	<Content name={'Memos'} redirect={'/'} bind:showMenu />
+	<Content name={'Liens externes'} redirect={'/liens_externes'} bind:showMenu />
 </div>
 
 <style>
