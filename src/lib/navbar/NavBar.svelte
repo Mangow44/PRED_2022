@@ -1,4 +1,5 @@
 <script>
+	import { goto } from '$app/navigation';
 	import Menu from './Menu.svelte';
 
 	let showMenu = false;
@@ -11,7 +12,10 @@
 >
 	<h1
 		class="my-auto ml-[1rem] pr-[1rem] text-white
-			font-bold text-2xl shrink-0"
+			font-bold text-2xl shrink-0 cursor-pointer"
+		on:click={() => {
+			goto('/');
+		}}
 	>
 		PRED - 2022
 	</h1>
