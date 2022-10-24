@@ -15,6 +15,7 @@
 			text-2xl font-bold rounded-xl shadow-lg bg-white
 			transition-all hover:scale-105"
 		on:click={() => {
+			showMenu = false;
 			goto('/liens_externes');
 		}}
 	>
