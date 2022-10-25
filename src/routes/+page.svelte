@@ -71,7 +71,7 @@
 {#if !loading}
 	<div
 		id="main"
-		class="grid overflow-auto
+		class="grid h-[calc(100vh-5rem)] overflow-auto
 			grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6
 			gap-4 mt-[5rem] py-[1rem]"
 	>

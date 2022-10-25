@@ -37,7 +37,7 @@
 	class="m-auto flex flex-col
 		shadow-lg
 		{expanded
-		? 'fixed w-full h-full top-[5rem] z-10'
+		? 'fixed w-full h-[calc(100vh-5rem)] top-[5rem] z-10'
 		: 'w-[14rem] h-[20rem] hover:scale-105 transition-transform'}"
 	style="background-color: {color};"
 	ondragover="return false"
