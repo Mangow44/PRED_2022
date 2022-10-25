@@ -34,7 +34,7 @@
 
 <div
 	draggable={!expanded}
-	class="m-auto flex flex-col
+	class="mx-auto flex flex-col
 		shadow-lg
 		{expanded
 		? 'fixed w-full h-[calc(100vh-5rem)] top-[5rem] z-10'
