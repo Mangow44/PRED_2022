@@ -1,16 +1,18 @@
 <script>
 	import Content from './Content.svelte';
+	import { menu } from '$lib/data/menu';
 	export let showMenu = false;
 </script>
 
 <div
 	id="menu"
 	class="fixed flex flex-col top-[5rem] w-full h-[calc(100vh-5rem)] 
-		bg-c-l-green transitionMenu z-20
+		bg-c-light-purple transitionMenu z-20
 		{showMenu ? 'showMenu' : 'defaultPositionXMenu'}"
 >
-	<Content name={'Memos'} redirect={'/'} bind:showMenu />
-	<Content name={'Liens externes'} redirect={'/liens_externes'} bind:showMenu />
+	{#each menu as m}
+		<Content name={m.name} redirect={m.redirect} bind:showMenu />
+	{/each}
 </div>
 
 <style>

@@ -12,7 +12,7 @@
 	export let swapBlocks = () => {};
 
 	$: expanded = false;
-	let color = '#A5A4A6';
+	let color = '#D7D7D9';
 
 	function saveBlock() {
 		updateDoc(doc(db, 'blocks', id), {
@@ -48,7 +48,7 @@
 		dragStart(e);
 	}}
 >
-	<h2 class="relative flex w-full h-[3rem] bg-c-light-blue shrink-0">
+	<h2 class="relative flex w-full h-[3rem] bg-c-light-purple shrink-0">
 		<DeleteBlock bind:expanded deleteBlock={() => deleteBlock()} />
 		<input
 			disabled={!expanded}
@@ -56,7 +56,7 @@
 			class="mx-auto px-[0.5rem] 
 				text-center
 				whitespace-nowrap overflow-hidden text-ellipsis  
-				outline-none bg-c-light-blue
+				outline-none bg-c-light-purple
 				{expanded ? 'w-[50%] h-full' : 'w-full h-full disabled'}"
 			bind:value={title}
 		/>

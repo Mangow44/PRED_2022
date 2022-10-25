@@ -21,7 +21,7 @@
 {#if showValidation}
 	<div
 		style="top: {validationPosition.y}px; left: {validationPosition.x}px"
-		class="absolute flex w-[6rem] h-[3rem] rounded-full bg-slate-500"
+		class="absolute flex w-[6rem] h-[3rem] rounded-full bg-c-dark-purple"
 		on:mouseleave={() => {
 			showValidation = false;
 		}}
