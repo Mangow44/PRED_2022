@@ -14,6 +14,16 @@ export const ressources = [
 		link: 'https://ai.googleblog.com/2019/10/learning-to-smell-using-deep-learning.html',
 		color: '#FBC943'
 	},
+	{
+		name: 'Classification with Graph Convolutional Networks',
+		link: 'https://openreview.net/pdf?id=SJU4ayYgl',
+		color: '#FBC943'
+	},
 	{ name: 'PubChem', link: 'https://pubchem.ncbi.nlm.nih.gov/', color: '#95F550' },
-	{ name: 'The Good Scents Compagny', link: 'http://thegoodscentscompany.com/', color: '#95F550' }
+	{ name: 'The Good Scents Compagny', link: 'http://thegoodscentscompany.com/', color: '#95F550' },
+	{
+		name: 'GCN - Paper Explained',
+		link: 'https://www.youtube.com/watch?v=VyIOfIglrUM',
+		color: '#FB524A'
+	}
 ];
